@@ -9,9 +9,16 @@
 <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
   <div class="progress-bar bg-success" style="width: @tripProgress">Our current progress on the trip</div>
 </div>
+<button class="btn btn-primary" @onclick="UpdateProgress"> Click </button>
 
 
 
 @code {
-    private string tripProgress = "25%";
+    private string tripProgress = "0%";
+    private int tripProgressInt = 0;
+
+    private void UpdateProgress(){
+	tripProgressInt++;
+	tripProgress = $"{tripProgressInt}%";
+    }
 }
