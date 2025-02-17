@@ -1,0 +1,17 @@
+﻿@page "/map"
+@inject HttpClient Http
+
+<PageTitle>Map</PageTitle>
+
+<h1>Map</h1>
+
+<p>Here we will keep the map for our route</p>
+<div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar bg-success" style="width: @tripProgress">Our current progress on the trip</div>
+</div>
+
+
+
+@code {
+    private string tripProgress = "25%";
+}
