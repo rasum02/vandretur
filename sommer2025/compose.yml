@@ -1,0 +1,9 @@
+services:
+  frontend:
+    build: 
+      context: .
+      dockerfile: docker/Dockerfile
+    image: vanretur/webapp
+    ports: 
+      - "5050:5050"
+
