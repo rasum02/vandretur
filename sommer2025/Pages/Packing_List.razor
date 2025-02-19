@@ -3,47 +3,28 @@
 <PageTitle>Packing list</PageTitle>
 
 <h1>Packing list for our trip</h1>
+
 @*Make this into a new component and create a list in the code field that cretes these from the items added later*@
 <nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3">
   <ul class="nav nav-pills">
-    <li class="nav-item">
-      <a class="nav-link" href="packing_list/#scrollspyHeading1">First</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="packing_list/#scrollspyHeading2">Second</a>
-    </li>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="packing_list/#" role="button" aria-expanded="false">Dropdown</a>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
-        <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
-      </ul>
-    </li>
+    @foreach (string ID in IDs){
+      <li class="nav-item">
+        <a class="nav-link" href=@(Page+"/#"+ID.Replace(' ','_'))>@ID</a>
+      </li>
+    }
   </ul>
 </nav>
 
 
 @*Make both the headders into separete components (to signal if we are talking about food, clothes, shared or other) and also the items (maybe the subheadings reffered to here https://getbootstrap.com/docs/5.3/components/list-group/#numbered)*@
-<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
-  <h4 id="scrollspyHeading1">First heading</h4>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  <h4 id="scrollspyHeading2">Second heading</h4>
-  <p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  </p>
-  <h4 id="scrollspyHeading3">Third heading</h4>
-  <p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  </p>
-  <h4 id="scrollspyHeading4">Fourth heading</h4>
-  <p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  </p>
-  <h4 id="scrollspyHeading5">Fifth heading</h4>
-  <p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  </p>
-  <Section/>
+<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0"> 
+  @foreach (string ID in IDs){
+    <Section Title=@ID Text=@Text ID=@ID.Replace(' ','_')/>
+  }
 </div>
+
+@code{
+  private string Page = "/packing_list";
+  private string[] IDs = new string[]{"Section 0", "Section 1", "Section2", "Section3", "Section4", "Section 5", "sectin 6", "sec7"}; 
+  private string Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+}
